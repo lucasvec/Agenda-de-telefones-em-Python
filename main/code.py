@@ -31,8 +31,9 @@ def incluirTel(dados, numeros):
             if nome_existente == v:
                 print('O nome tem, vamos adicionar um novo número.')
                 novo_numero = int(input('Novo número: '))
-                
-                k.append(novo_numero)
+                if i['numero']:
+                    i['numero'].append(novo_numero)
+
 
 agenda = []
 
