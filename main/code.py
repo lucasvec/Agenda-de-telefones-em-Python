@@ -2,10 +2,12 @@ import time
 
 def mostrarMenu():
     global escolha_menu
+    print('')
     print('-- MENU -- ')
     print('0 - Mostrar agenda.')
     print('1 - Adicionar contato.')
     print('2 - Adicionar número em contato existente.')
+    print('3 - Sair')
 
     while True:
         escolha_menu = int(input('R: '))
@@ -14,6 +16,7 @@ def mostrarMenu():
             break
         else:
             print('Erro! Escolha as opções válidas.')
+            print('\n')
             continue
 
 
@@ -68,3 +71,9 @@ while True:
 
     elif escolha_menu == 2:
         incluirTel(dados, numeros)
+
+    elif escolha_menu == 3:
+        print('Encerrando...')
+        time.sleep(2)
+        print('\x1b[2J')
+        break
