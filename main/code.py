@@ -7,7 +7,9 @@ def mostrarMenu():
     print('0 - Mostrar agenda.')
     print('1 - Adicionar contato.')
     print('2 - Adicionar número em contato existente.')
-    print('3 - Sair')
+    print('3 - Excluir contato.')
+    print('4 - Sair')
+
 
     while True:
         escolha_menu = int(input('R: '))
@@ -29,12 +31,14 @@ def pegarInformacoes():
     dados['nome'] = str(input('Nome: ')).title()
     quantidade_telefone = int(input('Quantos números você irá adicionar: '))
 
+
 def incluirNovoTel(dados, numeros, quantidade_telefone, agenda):
     for i in range(0, quantidade_telefone):
         telefone = int(input('Número de telefone: '))
         numeros.append(telefone)
         dados['numero'] = numeros
     agenda.append(dados)
+
 
 def incluirTel(dados, numeros):
     nome_existente = str(input('Nome: ')).title()
@@ -46,6 +50,7 @@ def incluirTel(dados, numeros):
                 if i['numero']:
                     i['numero'].append(novo_numero)
                     
+
 def mostrarAgenda(agenda):
     if agenda == []:
         print('Não há conteúdo.\n')
@@ -53,9 +58,24 @@ def mostrarAgenda(agenda):
         print('SEUS CONTATOS:')
         for i in agenda:
             for k, v in i.items():
-                print(f'{k.title()} - {v}')
+                if len(v) > 0:
+                    print(f'{k.title()} - {v}')
         print('\n')
 
+
+def excluirContato(agenda):
+    print('       EXCLUIR CONTATO.')
+    contato_excluir = str(input('Nome: ')).title()
+    confirmacao = str(input('Tem certeza? [s/n]\nR: ')).lower()
+    if confirmacao == 's':
+        for i in agenda:
+            for k, v in i.items():
+                if contato_excluir == v:
+                    i['nome'] = ''
+                    if i['numero']:
+                        i['numero'].clear()
+                        print('Contato excluido')
+                
 
 agenda = []
 
@@ -73,6 +93,9 @@ while True:
         incluirTel(dados, numeros)
 
     elif escolha_menu == 3:
+        excluirContato(agenda)
+
+    elif escolha_menu == 4:
         print('Encerrando...')
         time.sleep(2)
         print('\x1b[2J')
