@@ -7,8 +7,9 @@ def mostrarMenu():
     print('0 - Mostrar agenda.')
     print('1 - Adicionar contato.')
     print('2 - Adicionar número em contato existente.')
-    print('3 - Excluir contato.')
-    print('4 - Sair')
+    print('3 - Excluir número em contato existente')
+    print('4 - Excluir contato.')
+    print('5 - Sair')
 
 
     while True:
@@ -66,16 +67,33 @@ def mostrarAgenda(agenda):
 def excluirContato(agenda):
     print('       EXCLUIR CONTATO.')
     contato_excluir = str(input('Nome: ')).title()
-    confirmacao = str(input('Tem certeza? [s/n]\nR: ')).lower()
-    if confirmacao == 's':
+    if len(contato_excluir) > 0:
         for i in agenda:
             for k, v in i.items():
                 if contato_excluir == v:
-                    i['nome'] = ''
-                    if i['numero']:
-                        i['numero'].clear()
-                        print('Contato excluido')
-                
+                    confirmacao = str(input('Tem certeza? [s/n]\nR: ')).lower()
+                    if confirmacao == 's':
+                        i['nome'] = ''
+                        if i['numero']:
+                            i['numero'].clear()
+                            print('Contato excluido')
+
+                        
+def excluirNumero(agenda):
+    print('       EXCLUIR NÚMERO')
+    nome_contato = str(input('Nome: ')).title()
+    for i in agenda:
+        for k, v in i.items():
+            if nome_contato == v:
+                print(f'Números do {nome_contato}:')
+                for num in i['numero']:
+                    print(f'- {num}')
+                excluir_numero = int(input('Deseja excluir: '))
+                confirmacao = str(input('Tem certeza? [s/n]\nR: ')).lower()
+                if confirmacao == 's':
+                    i['numero'].remove(excluir_numero)
+                    print('Número selecionado excluído.')
+
 
 agenda = []
 
@@ -93,9 +111,12 @@ while True:
         incluirTel(dados, numeros)
 
     elif escolha_menu == 3:
-        excluirContato(agenda)
+        excluirNumero(agenda)
 
     elif escolha_menu == 4:
+        excluirContato(agenda)
+
+    elif escolha_menu == 5:
         print('Encerrando...')
         time.sleep(2)
         print('\x1b[2J')
