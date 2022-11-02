@@ -1,2 +1,2 @@
-# Python Challenges Solved
- Explore exercicios resolvidos.
+# Python Challenge
+ O objetivo era desenvolver uma agenda de contatos.
