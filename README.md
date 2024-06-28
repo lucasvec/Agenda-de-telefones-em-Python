@@ -1,2 +1,2 @@
 # Python Challenge
- O objetivo era desenvolver uma agenda de contatos, utilizando conceitos introdutórios de programação.
+The objective was to develop a contact list, using introductory programming concepts.
